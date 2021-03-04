@@ -1,0 +1,5 @@
+.view-table{ margin: 10px 0px; border-collapse: collapse; }
+.view-table th{ background: #ddd; }
+.view-table td,th{ padding: 10px; border:1px solid black; }
+
+

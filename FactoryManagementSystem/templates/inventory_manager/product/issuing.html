@@ -1,0 +1,30 @@
+{% extends 'inventory_manager/product.html' %}
+
+{% block contentblock %}
+	<h1>Product Issuings</h1>
+	
+	<br>
+	{% if recodes %}
+		<div class="table-div">
+			<table class="view-table">
+	    	<tr>
+	    		<th>ID</th>
+	    		<th>Date</th>
+	    		<th>Issuing Note Number</th>
+	    		<th>View</th>
+	    		<!-- <th>Action</th> -->
+	    	</tr>
+	    	{% for recode in recodes %}
+	    	    <tr>
+	    	    	<td>{{ recode.id }}</td>
+	    	    	<td>{{ recode.date }}</td>
+	    	    	<td>{{ recode.issue_note_num }}</td>
+	    	    	<td><a href="{% url 'view-issue-note' recode.issue_note_num %}"><button class="btn btn-sm">Issue Note</button></a></td>
+	    	    </tr>
+	    	{% endfor %}
+	    </table>
+		</div>
+	{% else %}
+		<p>There are no recodes.</p>
+	{% endif %}
+{% endblock %}

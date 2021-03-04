@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+
+{% block headblock %}
+{% endblock %}
+
+
+{% block bodyblock %}
+		<br>
+		<div class="table-div">
+			
+			<table class="borderless">
+			<tr>
+				<td><a href="{% url 'customers-view' %}"><button class="btn">Customers</button></a></td>
+				<td><a href="{% url 'sales-view' %}"><button class="btn">Sales</button></a></td>
+				<td><a href="{% url 'other-sales-view' %}"><button class="btn">Other Sales</button></a></td>
+				<td><a href="{% url 'products-view' %}"><button class="btn">Products</button></a></td>
+				<td><a href="{% url 'product-stock-view' %}"><button class="btn">Stocks</button></a></td>
+				<td><a href="{% url 'issue-product-view' %}"><button class="btn">Issuings</button></a></td>
+				<td><a href="{% url 'selldispatch' %}"><button class="btn">Dispatchs</button></a></td>
+			</tr>
+			<tr>
+				<td><a href="{% url 'add-customer' %}"><button class="btn">Add Customer</button></a></td>
+				<td><a href="{% url 'add-sale' %}"><button class="btn">Add Sale</button></a></td>
+				<td><a href="{% url 'add-other-sale' %}"><button class="btn" style="padding: 5px 0;">Add Other Sale</button></a></td>
+				<td><a href="{% url 'add-product' %}"><button class="btn">Add Product</button></a></td>
+				<td><a href="{% url 'add-selldispatch' %}"><button class="btn">Add Dispatch</button></a></td>
+				<td><a href="{% url 'add-issue-note' %}"><button class="btn" style="padding: 5px 0;">Add Issue Note</button></a></td>
+				<td><a href="{% url 'add-stock' %}"><button class="btn">Add Stock</button></a></td>
+			</tr>
+		</table>
+
+		</div>
+		<br>
+		<hr>
+		{% block contentblock %}
+		{% endblock %}
+	
+{% endblock %}

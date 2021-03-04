@@ -1,0 +1,73 @@
+{% extends 'inventory_manager/product.html' %}
+
+{% block contentblock %}
+	<h1>Sale Informations</h1>
+	<br>
+	<div class="general-info">
+		<h3>General Informations</h3>
+		<p>
+			<label for="cust">Customer:</label>&nbsp; {{ sale.customer }}
+		</p>
+		<p>
+			<label for="date">Date:</label>&nbsp; {{ sale.date }}
+		</p>
+		<p>
+			<label for="dnn">Dispatch Note Number:</label>&nbsp; {{ sale.dispatch_note_num }}
+		</p>
+		<p>
+			<label for="value">Value:</label>&nbsp; {{ sale.amount }}
+		</p>
+		<p>
+			<label for="createduser">Created User:</label>&nbsp; {{ sale.created_user }}
+		</p>
+	</div>
+
+	<div class="dispatch-note-info">
+		<h3>Dispatch Note</h3>
+		{% if dispatchs %}
+			<div class="table-div">
+				<table class="view-table">
+		    	<tr>
+		    		<th>Stock</th>
+		    		<th>Unit Price</th>
+		    		<th>Quantity</th>
+		    		<th>Value</th>
+		    	</tr>
+		    	{% for dispatch in dispatchs %}
+		    	    <tr>
+		    	    	<td>{{ dispatch.stock }}</td>
+		    	    	<td>{{ dispatch.unit_price }}</td>
+		    	    	<td>{{ dispatch.qty }}</td>
+		    	    	<td class="amount">{{ dispatch.amount }}</td>
+		    	    	
+		    	    </tr>
+		    	{% endfor %}
+		    </table>
+			</div>
+		{% else %}
+			<p>There are no dispatchs.</p>
+		{% endif %}
+	</div>
+
+	<div class="update-info">
+		<h3>Sale Update Informations</h3>
+		{% if recodes %}
+			<table class="view-table">
+				<tr>
+					<th>User</th>
+					<th>Date</th>
+				</tr>
+				{% for recode in recodes %}
+					<tr>
+					<td>{{ recode.user }}</td>
+					<td>{{ recode.date }}</td>
+					</tr>
+				{% endfor %}
+			</table>
+		{% else %}
+			
+			<p>There are no recodes.</p>
+		{% endif %}
+	</div>
+
+{% endblock %}

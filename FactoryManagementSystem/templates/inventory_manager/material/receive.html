@@ -1,0 +1,76 @@
+{% extends 'inventory_manager/material.html' %}
+
+
+{% block contentblock %}
+	<h1>Receives</h1>
+
+	<hr>
+	<div class="search-form">
+		<form action="" method="POST">
+			{% csrf_token %}
+			<label for="supplire_name">Supplire:</label><input type="text" name="supplire_name"> &nbsp;
+			<label for="start-date">Start Date:</label><input type="date" name="start_date"> &nbsp;
+			<label for="end-date">End Date:</label><input type="date" name="end_date"> &nbsp;
+			<input type="submit" value="Search" class="btn btn-sm"> 
+		</form>
+	</div>
+	
+	<hr>
+	<br>
+	{% if receives %}
+
+		<div class="table-div">
+			<table class="view-table">
+			<tr>
+				<th>ID</th>
+				<th>Supplire</th>
+				<th>Date</th>
+				<th>D.N. Number</th>
+				<th>Value</th>
+				<th>Created User</th>
+				<th>GRN</th>
+				<th>INV</th>
+				<th>PV</th>
+				<th>Info</th>
+				<th>Payment</th>
+				<th colspan="3">Actions</th>
+				
+			</tr>
+			{% for receive in receives %}
+			<tr class="paid-{{ receive.paid }}">
+				<td>{{ receive.id }}</td>
+				<td>{{ receive.supplire }}</td>
+				<td>{{ receive.date }}</td>
+				<td>{{ receive.dispatch_note_num }}</td>
+				<td class="amount">{{ receive.amount }}</td>
+				<td>{{ receive.created_user }}</td>
+				<td>
+					<input type="checkbox" class="info-checkbox" {% if receive.grn %} checked {% endif %}>
+				</td>
+				<td>
+					<input type="checkbox" class="info-checkbox" {% if receive.invoice %} checked {% endif %}>
+				</td>
+				<td>
+					<input type="checkbox" class="info-checkbox" {% if receive.payment_voucher %} checked {% endif %}>
+				</td>
+				<td><a href="{% url 'add-buy-payment' receive.id %}"><button class="btn btn-sm"> Add </button></a></td>
+				<td><a href="{% url 'buy-payments' receive.id %}"><button class="btn btn-sm">Payments</button></a></td>
+				<td><a href="{% url 'update-receive' receive.id %}"><button class="btn btn-sm"> Update </button></a></td>
+				<td><a href="{% url 'receive-info' receive.id %}"><button class="btn btn-sm"> Info </button></a></td>
+			</tr>
+			{% endfor %}
+			<tr>
+				<th colspan="4">Total</th>
+				<td class="amount" style="background: yellow;">{{ total }}</td>
+			</tr>
+		</table>
+		</div>
+
+	{% else %}
+		<p>There are no receives. </p>
+	{% endif %}
+
+	<script>
+		$('.info-checkbox').click(function(){ return false; });
+	</script>
+{% endblock %}

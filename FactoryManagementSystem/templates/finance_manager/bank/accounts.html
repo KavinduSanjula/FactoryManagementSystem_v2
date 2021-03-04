@@ -1,0 +1,29 @@
+{% extends 'finance_manager/bank/bank.html' %}
+
+{% block bodycontent %}
+<br>
+	<h1>Accounts</h1>
+	{% if recodes %}
+		<div class="table-div">
+			<table class="view-table">
+			<tr>
+				<th>Account Number</th>
+				<th>Name</th>
+				<th>Description</th>
+				<th>Value</th>
+			</tr>
+			{% for recode in recodes %}
+				<tr>
+					<td>{{ recode.acc_num }}</td>
+					<td>{{ recode.acc_name }}</td>
+					<td>{{ recode.desc }}</td>
+					<td>{{ recode.amount }}</td>
+				</tr>
+			{% endfor %}
+		</table>
+		</div>
+	{% else %}
+		<p>There are no recodes</p>
+	{% endif %}
+	
+{% endblock %}

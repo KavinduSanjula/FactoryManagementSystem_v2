@@ -1,0 +1,41 @@
+{% extends 'inventory_manager/product.html' %}
+
+{% block contentblock %}
+	<h1>Add Product Issue Note</h1>
+	<hr>
+	<div class="left-align-form">
+		<form action="{% url 'add-issue-note' %}" method="POST">
+			{% csrf_token %}
+			{{ form }}
+			<input type="submit" value="Add" class="btn">
+		</form>
+	</div>
+	<div class="dispatch-note">
+		<h3>Issue Note</h3>
+		<hr>
+		<br>
+		{% if recodes %}
+		<h5>Issue Note Number: {{ issue_note_num }}</h5>
+		    <div class="table-div">
+		    	<table class="view-table">
+		    	<tr>
+		    		<th>Product</th>
+		    		<th>Batch Number</th>
+		    		<th>Quantity</th>
+		    		<th>Action</th>
+		    	</tr>
+		    	{% for recode in recodes %}
+		    	    <tr>
+		    	    	<td>{{ recode.product }}</td>
+		    	    	<td>{{ recode.batch_num }}</td>
+		    	    	<td>{{ recode.qty }}</td>
+		    	    	<td><a href="{% url 'delete-issue-note' recode.id %}"><button class="btn btn-sm">Delete</button></a></td>
+		    	    </tr>
+		    	{% endfor %}
+		    </table>
+		    </div>
+		{% else %}
+            <p>No issue note added.</p>		
+		{% endif %}
+	</div>
+{% endblock %}

@@ -1,0 +1,25 @@
+{% extends 'finance_manager/finance.html' %}
+
+{% block contentblock %}
+	<h1>Projection Cashflow</h1>
+	<hr>
+
+		<div class="table-div">
+			<table class="borderless">
+			<tr>
+				<td><a href="{% url 'projectioncashflow-add-cash-in' %}"><button class="btn">Add Cash In</button></a></td>
+				<td><a href="{% url 'projectioncashflow-add-cash-out' %}"><button class="btn">Add Cash Out</button></a></td>
+			</tr>
+			<tr>
+				<td><a href="{% url 'projectioncashflow-cash-in' %}"><button class="btn">Cash Ins</button></a></td>
+				<td><a href="{% url 'projectioncashflow-cash-out' %}"><button class="btn">Cash Outs</button></a></td>
+			</tr>
+		</table>
+		</div>
+
+	<hr>
+	
+	{% block bodycontent %}
+	{% endblock %}
+	
+{% endblock %}

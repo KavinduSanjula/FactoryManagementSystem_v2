@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+
+{% block headblock %}
+<title>Other</title>
+{% endblock %}
+
+
+{% block bodyblock %}
+		<br>
+		<div class="table-div">
+		<table class="borderless">
+		<tr>
+			<td><a href="{% url 'view-otherincome' %}"><button class="btn" >Other Incomes</button></a></td>
+			<td><a href="{% url 'view-expense' %}"><button class="btn" style="padding: 10px 0px;">Expenses</button></a></td>
+			<td><a href="{% url 'view-salery' %}"><button class="btn" style="padding: 10px 0px;">Salery</button></a></td>	
+			<td><a href="{% url 'view-employes' %}"><button class="btn" style="padding: 10px 0px;">Employes</button></a></td>		
+		</tr>
+		<tr>
+			<td><a href="{% url 'add-otherincome' %}"><button class="btn">Add Other Incomes</button></a></td>
+			<td><a href="{% url 'add-expense' %}"><button class="btn">Add Expenses</button></a></td>
+			<td><a href="{% url 'add-salery' %}"><button class="btn" style="padding: 10px 0px;">Add Salery</button></a></td>
+			<td><a href="{% url 'add-employee' %}"><button class="btn">Add Employee</button></a></td>			
+		</tr>
+			
+		</table>
+		</div>
+		<br>
+		<hr>
+		{% block contentblock %}
+		{% endblock %}
+	
+{% endblock %}

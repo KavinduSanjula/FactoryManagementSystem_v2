@@ -1,0 +1,32 @@
+{% extends 'inventory_manager/material.html' %}
+
+{% block contentblock %}
+	<h1>Stock</h1>
+	{% if stocks %}
+
+		<div class="table-div">
+			<table class="view-table">
+			<tr>
+				<th>stock ID</th>
+				<th>Material</th>
+				<th>Batch No</th>
+				<th>Quantity</th>
+				<th>Action</th>
+			</tr>
+			{% for stock in stocks %}
+			<tr>
+				<td>{{ stock.id }}</td>
+				<td>{{ stock.material }}</td>
+				<td>{{ stock.batch_num }}</td>
+				<td>{{ stock.qty }}</td>
+				<td><a href="{% url 'update-material-stock' stock.id %}"><button class="btn btn-sm">Edit</button></a></td>
+
+			</tr>
+			{% endfor %}
+		</table>
+		</div>
+
+	{% else %}
+		<p>There are no stocks. </p>
+	{% endif %}
+{% endblock %}

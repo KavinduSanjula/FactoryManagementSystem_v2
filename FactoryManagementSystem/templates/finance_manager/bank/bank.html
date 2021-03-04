@@ -1,0 +1,29 @@
+{% extends 'finance_manager/finance.html' %}
+
+{% block contentblock %}
+	<h1>Bank</h1>
+
+	<hr>
+
+		<div class="table-div">
+			<table class="borderless">
+			<tr>
+				<td><a href="{% url 'deposit' %}"><button class="btn">Add Deposit</button></a></td>
+				<td><a href="{% url 'withdraw' %}"><button class="btn" style="padding: 5px 0;">Add Withdrawal</button></a></td>
+				<td><a href="{% url 'add-account' %}"><button class="btn">Add Account</button></a></td>
+			</tr>
+			<tr>
+				<td><a href="{% url 'deposits' %}"><button class="btn">Deposits</button></a></td>
+				<td><a href="{% url 'withdrawals' %}"><button class="btn">Withdrawals</button></a></td>
+				<td><a href="{% url 'accounts' %}"><button class="btn">Accounts</button></a></td>
+				<td><a href="{% url 'checks' %}"><button class="btn">Checks</button></a></td>
+			</tr>
+		</table>
+		</div>
+	
+	<hr>
+
+	{% block bodycontent %}
+	{% endblock %}
+	
+{% endblock %}

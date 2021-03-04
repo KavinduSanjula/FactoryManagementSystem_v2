@@ -1,0 +1,13 @@
+{% extends 'inventory_manager/product.html' %}
+
+{% block contentblock %}
+	<h1>{{ formname }}</h1>
+	<div class="form-content">
+		<h3>{{ formname }}</h3>
+		<form action="" method="POST">
+			{% csrf_token %}
+			{{ form.as_p }}
+			<input type="submit" value="Add" class="btn">
+		</form>
+	</div>
+{% endblock %}

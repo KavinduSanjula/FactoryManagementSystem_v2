@@ -1,0 +1,48 @@
+{% extends 'finance_manager/pettycash/pettycash.html' %}
+
+{% block bodycontent %}
+	<br>
+	<h2>Petty Cash Issuings</h2>
+	<hr>
+	<div class="search-form">
+		<form action="" method="POST">
+			{% csrf_token %}
+			<label for="start-date">Start Date:</label><input type="date" name="start_date"> &nbsp;
+			<label for="end-date">End Date:</label><input type="date" name="end_date"> &nbsp;
+			<input type="submit" value="Search" class="btn btn-sm"> 
+		</form>
+	</div>	
+	<hr>
+	
+	{% if recodes %}
+		<div class="table-div">
+			<table class="view-table">
+			<tr>
+				<th>Ref-Number</th>
+				<th>Date</th>
+				<th>Amount</th>
+				<th>Start Date</th>
+				<th>End Date</th>
+				<th>Remarks</th>
+			</tr>
+			{% for recode in recodes %}
+				<tr>
+					<td>{{ recode.ref_num }}</td>
+					<td>{{ recode.date }}</td>
+					<td class="amount">{{ recode.amount }}</td>
+					<td>{{ recode.start_date }}</td>
+					<td>{{ recode.end_date }}</td>
+					<td>{{ recode.remarks }}</td>
+				</tr>
+			{% endfor %}
+			<tr>
+				<th colspan="2"></th>
+				<td class="amount">{{ total }}</td>
+			</tr>
+		</table>
+		</div>
+	{% else %}
+		<p>There are no recodes</p>
+	{% endif %}
+	
+{% endblock %}

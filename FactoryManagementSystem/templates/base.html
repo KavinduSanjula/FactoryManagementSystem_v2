@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="{% static 'css/styles.css' %}">
+	<link rel="stylesheet" href="{% static 'css/tables.css' %}">
+	<script src="{% static 'js/jquery.js' %}"></script>
+
+	<script>
+		$(document).ready(function(){
+			$('.mobile-nav h3').click(function(){
+				$('.mobile-nav ul li').slideToggle();
+			});
+		});
+	</script>
+
+	{% block headblock %}
+	{% endblock %}
+</head>
+<body>
+	<div class="container">
+		<div class="nav-bar">
+			<nav>
+				<ul>
+					<li><a href="{% url 'index' %}">Home</a></li>
+					<li><a href="{% url 'product' %}">Product</a></li>
+					<li><a href="{% url 'material' %}">Material</a></li>
+					<li><a href="{% url 'finance-manager' %}">Finance</a></li>
+					<li><a href="{% url 'other' %}">Other</a></li>
+					<li><a href="/admin">Admin</a></li>
+
+					{% if user.is_authenticated %}
+						<li><a href="{% url 'logout' %}">Logout</a></li>
+					{% else %}
+						<li><a href="{% url 'login' %}">Login</a></li>
+					{% endif %}
+
+				</ul>
+				<div class="mobile-nav">
+					<h3>Menu</h3>
+					<ul>
+						<li><a href="{% url 'index' %}">Home</a></li>
+						<li><a href="{% url 'product' %}">Product</a></li>
+						<li><a href="{% url 'material' %}">Material</a></li>
+						<li><a href="{% url 'finance-manager' %}">Finance</a></li>
+						<li><a href="{% url 'other' %}">Other</a></li>
+						<li><a href="/admin">Admin</a></li>
+
+						{% if user.is_authenticated %}
+							<li><a href="{% url 'logout' %}">Logout</a></li>
+						{% else %}
+							<li><a href="{% url 'login' %}">Login</a></li>
+						{% endif %}
+
+					</ul>
+				</div>	
+			</nav>
+		</div>
+
+		{% if messages %}
+		{% for message in messages %}
+			<div class="alert-warning">
+				<center>{{ message }}</center>
+			</div>
+		{% endfor %}
+	{% endif %}
+		<div class="body-content">
+			{% block bodyblock %}
+			{% endblock %}
+		</div>
+	</div>
+
+</body>
+</html>

@@ -1,0 +1,45 @@
+{% extends 'inventory_manager/material.html' %}
+
+{% block contentblock %}
+	<h1>Add Dispatch Note</h1>
+	<hr>
+	<div class="left-align-form">
+		<form action="{% url 'add-buydispatch' %}" method="POST">
+			{% csrf_token %}
+			{{ form }}
+			<input type="submit" value="Add" class="btn">
+		</form>
+	</div>
+	<div class="dispatch-note">
+		<h3>Dispatch Note</h3>
+		<hr>
+		<br>
+		{% if recodes %}
+		<h5>Dispatch Note Number: {{ dispatch_note_num }}</h5>
+		   <div class="table-div">
+		   	 <table class="view-table">
+		    	<tr>
+		    		<th>Material</th>
+		    		<th>Unit Price</th>
+		    		<th>Batch Number</th>
+		    		<th>Quantity</th>
+		    		<th>Value</th>
+		    		<th>Action</th>
+		    	</tr>
+		    	{% for recode in recodes %}
+		    	    <tr>
+		    	    	<td>{{ recode.material }}</td>
+		    	    	<td class="amount">{{ recode.unit_price }}</td>
+		    	    	<td>{{ recode.batch_num }}</td>
+		    	    	<td>{{ recode.qty }}</td>
+		    	    	<td class="amount">{{ recode.amount }}</td>
+		    	    	<td><a href="{% url 'delete-buydispatch' recode.id %}"><button class="btn btn-sm">Delete</button></a></td>
+		    	    </tr>
+		    	{% endfor %}
+		    </table>
+		   </div>
+		{% else %}
+            <p>No dispatch note added.</p>		
+		{% endif %}
+	</div>
+{% endblock %}

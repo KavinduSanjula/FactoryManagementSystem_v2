@@ -1,0 +1,51 @@
+{% extends 'inventory_manager/material.html' %}
+
+{% block contentblock %}
+	<h1>Material Issue</h1>
+
+	<hr>
+	<div class="search-form">
+		<form action="" method="POST">
+			{% csrf_token %}
+			<label for="material_name">Material:</label><input type="text" name="material_name"> &nbsp;
+			<label for="start-date">Start Date:</label><input type="date" name="start_date"> &nbsp;
+			<label for="end-date">End Date:</label><input type="date" name="end_date"> &nbsp;
+			<input type="submit" value="Search" class="btn btn-sm"> 
+		</form>
+	</div>	
+	<hr>
+	<br>
+	{% if issuings %}
+		<div class="table-div">
+			<table class="view-table">
+			<tr>
+				<th>ID</th>
+				<th>Stock</th>
+				<th>Production Batch Number</th>
+				<th>Date</th>
+				<th>Quantity</th>
+				<th>Value</th>
+				<th>Remarks</th>
+			</tr>
+			{% for issue in issuings %}
+				<tr>
+					<td>{{ issue.id }}</td>
+					<td>{{ issue.stock }}</td>
+					<td>{{ issue.production_batch_number }}</td>
+					<td >{{ issue.date }}</td>
+					<td>{{ issue.qty }}</td>
+					<td class="amount">{{ issue.amount }}</td>
+					<td>{{ issue.remarks }}</td>
+				</tr>
+			{% endfor %}
+			<tr>
+				<th colspan="5">Total</th>
+				<td class="amount">{{ total }}</td>
+			</tr>
+		</table>
+		</div>
+
+	{% else %}
+		<p>There are no issuings. </p>
+	{% endif %}
+{% endblock %}

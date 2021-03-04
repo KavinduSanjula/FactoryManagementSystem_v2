@@ -1,0 +1,89 @@
+{% extends 'inventory_manager/material.html' %}
+
+{% block contentblock %}
+	<h1> Receive Inforation </h1>
+	<br>
+	<div class="general-info">
+		<h3>General Informations</h3>
+		<p>
+			<label for="id">Receive ID:</label>&nbsp; {{ receive.id }}
+		</p>
+		<p>
+			<label for="supplire">Supplire:</label>&nbsp; {{ receive.supplire }}
+		</p>
+		<p>
+			<label for="dnn">Dispatch Note Number:</label>&nbsp; {{ receive.dispatch_note_num }}
+		</p>
+		<p>
+			<label for="date">Date:</label>&nbsp; {{ receive.date }}
+		</p>
+		<p>
+			<label for="value">Value:</label>&nbsp; {{ receive.amount }}
+		</p>
+		<p>
+			<label for="grn">GRN Number:</label>&nbsp; {{ receive.grn }}
+		</p>
+		<p>
+			<label for="invoice">Invoice Number:</label>&nbsp; {{ receive.invoice }}
+		</p>
+		<p>
+			<label for="p_voucher">Payment Voucher:</label>&nbsp; {{ receive.payment_voucher }}
+		</p>
+		<p>
+			<label for="createduser">Created User:</label>&nbsp; {{ receive.created_user }}
+		</p>
+	</div>
+
+	<div class="dispatch-note-info">
+		<h3>Dispatch Note</h3>
+		{% if dispatchs %}
+		<div class="tabel-div">
+			<table class="view-table">
+	    	<tr>
+	    		<th>Material</th>
+	    		<th>Unit Price</th>
+	    		<th>Batch Number</th>
+	    		<th>Quantity</th>
+	    		<th>Value</th>
+	    		<!-- <th>Action</th> -->
+	    	</tr>
+	    	{% for dispatch in dispatchs %}
+	    	    <tr>
+	    	    	<td>{{ dispatch.material }}</td>
+	    	    	<td class="amount">{{ dispatch.unit_price }}</td>
+	    	    	<td>{{ dispatch.batch_num }}</td>
+	    	    	<td>{{ dispatch.qty }}</td>
+	    	    	<td class="amount">{{ dispatch.amount }}</td>
+	    	    </tr>
+	    	{% endfor %}
+	    </table>
+		</div>
+		{% else %}
+			<p>There are no dispatchs.</p>
+		{% endif %}
+	</div>
+
+	<div class="update-info">
+		<h3>Update Information</h3>
+		{% if recodes %}
+			<div class="table-div">
+				<table class="view-table">
+				<tr>
+					<th>User</th>
+					<th>Date</th>
+				</tr>
+				{% for recode in recodes %}
+				<tr>
+					<td>{{ recode.user }}</td>
+					<td>{{ recode.date }}</td>
+				</tr>
+				{% endfor %}
+			</table>
+			</div>
+		{% else %}
+			
+			<p>There are no recodes.</p>
+		{% endif %}
+	</div>
+
+{% endblock %}

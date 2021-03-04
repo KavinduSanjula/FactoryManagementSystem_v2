@@ -1,0 +1,34 @@
+{% extends 'inventory_manager/material.html' %}
+
+{% block contentblock %}
+	<h1>Supplire</h1>
+	{% if supplires %}
+
+		<div class="table-div">
+			<table class="view-table">
+			<tr>
+				<th>ID</th>
+				<th>Name</th>
+				<th>Address</th>
+				<th>Email</th>
+				<th>Phone</th>
+				<th colspan="2">Actions</th>
+			</tr>
+			{% for supplire in supplires %}
+			<tr>
+				<td>{{ supplire.id }}</td>
+				<td>{{ supplire.name }}</td>
+				<td>{{ supplire.addr }}</td>
+				<td>{{ supplire.email }}</td>
+				<td>{{ supplire.phone }}</td>
+				<td><a href="{% url 'update-supplire' supplire.id %}"><button class="btn btn-sm">Update</button></a></td>
+				<td><a href="{% url 'update-supplire' supplire.id %}"><button class="btn btn-sm">Info</button></a></td>
+			</tr>
+			{% endfor %}
+		</table>
+		</div>
+
+	{% else %}
+		<p>There are no supplires. </p>
+	{% endif %}
+{% endblock %}

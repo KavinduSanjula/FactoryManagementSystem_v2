@@ -1,0 +1,60 @@
+{% extends 'inventory_manager/product.html' %}
+
+{% block contentblock %}
+	<h1>Other Sales</h1>
+
+	<hr>
+	<div class="search-form">
+		<form action="" method="POST">
+			{% csrf_token %}
+			<label for="start-date">Start Date:</label><input type="date" name="start_date"> &nbsp;
+			<label for="end-date">End Date:</label><input type="date" name="end_date"> &nbsp;
+			<input type="submit" value="Search" class="btn btn-sm"> 
+		</form>
+	</div>	
+	<hr>
+	<br>
+	{% if sales %}
+
+		<div class="table-div">
+			<table class="view-table">
+			<tr>
+				<th>ID</th>
+				<th>Customer</th>
+				<th>Date</th>
+				<th>D.N. Number</th>
+				<th>Value</th>
+				<th>Created User</th>
+				<th colspan="2">Action</th>
+				
+				
+			</tr>
+			{% for sale in sales %}
+			<tr class="paid-{{sale.paid}}">
+				<td>{{ sale.id }}</td>
+				<td>{{ sale.customer }}</td>
+				<td>{{ sale.date }}</td>
+				<td>{{ sale.dispatch_note_num }}</td>
+				<td class="amount">{{ sale.amount }}</td>
+				<td>{{ sale.created_user }}</td>
+				<td><a href="{% url 'update-other-sale' sale.id %}"><button class="btn btn-sm"> Edit </button></a></td> 
+				<td>
+					<form action="{% url 'delete-other-sale' sale.id %}" method="POST">
+						{% csrf_token %}
+						<input type="submit" value="Delete" class="btn btn-sm">
+					</form>
+				</td>
+				
+			</tr>
+			{% endfor %}
+			<tr>
+				<th colspan="4">Total</th>
+				<td class="amount" style="background: yellow;">{{ total }}</td>
+			</tr>
+		</table>
+		</div>
+
+	{% else %}
+		<p>There are no sales. </p>
+	{% endif %}
+{% endblock %}

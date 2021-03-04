@@ -1,0 +1,54 @@
+{% extends 'finance_manager/finance.html' %}
+
+{% block contentblock %}
+	<h1>Profit</h1>
+	<hr>
+
+		<table class="borderless">
+			<tr>
+				<td><a href="{% url 'calc-profit' %}"><button class="btn">Calc Profit</button></a></td>
+			</tr>
+		</table>
+
+	<hr>
+	
+	{% block bodycontent %}
+	<hr>
+	<div class="search-form">
+		<form action="" method="POST">
+			{% csrf_token %}
+			<label for="start-date">Start Date:</label><input type="date" name="start_date"> &nbsp;
+			<label for="end-date">End Date:</label><input type="date" name="end_date"> &nbsp;
+			<input type="submit" value="Search" class="btn btn-sm"> 
+		</form>
+	</div>	
+	<hr>
+	{% if recodes %}
+		<div class="table-div">
+			<table class="view-table" >
+			<tr>
+			<th>Calc Date</th>
+			<th>Description</th>
+			<th>Profit</th>
+			<th>Start Date</th>
+			<th>End Date</th>
+			<th>Remarks</th>
+			</tr>
+			{% for recode in recodes %}
+				<tr>
+					<td>{{ recode.date }}</td>
+					<td>{{ recode.desc }}</td>
+					<td>{{ recode.amount }}</td>
+					<td>{{ recode.start_date }}</td>
+					<td>{{ recode.end_date }}</td>
+					<td>{{ recode.remarks }}</td>
+				</tr>
+			{% endfor %}
+		</table>
+		</div>
+	{% else %}
+		<p>There are no recodes.</p>
+	{% endif %}
+	{% endblock %}
+	
+{% endblock %}

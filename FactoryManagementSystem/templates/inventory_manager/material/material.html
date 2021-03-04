@@ -1,0 +1,28 @@
+{% extends 'inventory_manager/material.html' %}
+
+{% block contentblock %}
+	<h1>Material</h1>
+	{% if materials %}
+
+		<div class="table-div">
+			<table class="view-table">
+			<tr>
+				<th>Product ID</th>
+				<th>Name</th>
+				<th>Action</th>
+			</tr>
+			{% for material in materials %}
+			<tr>
+				<td>{{ material.id }}</td>
+				<td>{{ material.name }}</td>
+				<td><a href="{% url 'update-material' material.id %}"><button class="btn btn-sm">Edit</button></a></td>
+
+			</tr>
+			{% endfor %}
+		</table>
+		</div>
+
+	{% else %}
+		<p>There are no materials. </p>
+	{% endif %}
+{% endblock %}

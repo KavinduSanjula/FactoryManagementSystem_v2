@@ -1,0 +1,56 @@
+{% extends 'inventory_manager/other.html' %}
+
+{% block contentblock %}
+	<h1>Employes</h1>
+	<hr>
+	<div class="search-form">
+		<form action="" method="POST">
+			{% csrf_token %}
+			<label for="emp_name">Emp Name:</label><input type="text" name="emp_name"> &nbsp;
+			<label for="emp_code">Emp Code:</label><input type="text" name="emp_code"> &nbsp;
+
+			<select name="emp_type">
+				<option value="all">Type(all)</option>
+				<option value="perm">Permenet</option>
+				<option value="temp">Temporary</option>
+			</select>
+
+			
+			<input type="submit" value="Search" class="btn btn-sm"> 
+		</form>
+	</div>	
+	<hr>
+	{% if recodes %}
+		<div class="table-div">
+			<table class="view-table">
+				<tr>
+					<th>Emp Code</th>
+					<th>Name</th>
+					<th>Address</th>
+					<th>Phone</th>
+					<th>Email</th>
+					<th>Permenet</th>
+					<th>Basic Salery</th>
+					<th>Action</th>
+				</tr>
+				{% for recode in recodes %}
+				    <tr>
+					<td>{{ recode.code }}</td>
+					<td>{{ recode.name }}</td>
+					<td>{{ recode.addr }}</td>
+					<td>{{ recode.phone }}</td>
+					<td>{{ recode.email }}</td>
+					<td><input type="checkbox" {% if recode.is_permenet %} checked {% endif %}></td>
+					<td>{{ recode.basic_salery }}</td>
+					<td><a href="{% url 'update-employee' recode.id %}"><button class="btn btn-sm">Edit</button></a></td>
+				    </tr>
+				{% endfor %}
+			</table>
+		</div>
+	{% else %}
+		<p>There are no recodes.</p>
+	{% endif %}
+	<script>
+		$('.view-table input').click(function(){ return false;});
+	</script>
+{% endblock %}

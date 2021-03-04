@@ -1,0 +1,33 @@
+{% extends 'inventory_manager/product.html' %}
+
+{% block contentblock %}
+	<h1>Customers</h1>
+	{% if customers %}
+
+		<div class="table-div">
+			<table class="view-table">
+			<tr>
+				<th>ID</th>
+				<th>Name</th>
+				<th>Address</th>
+				<th>Email</th>
+				<th>Phone</th>
+				<th colspan="2">Actions</th>
+			</tr>
+			{% for customer in customers %}
+			<tr>
+				<td>{{ customer.id }}</td>
+				<td>{{ customer.name }}</td>
+				<td>{{ customer.addr }}</td>
+				<td>{{ customer.email }}</td>
+				<td>{{ customer.phone }}</td>
+				<td><a href="{% url 'update-customer' customer.id %}"><button class="btn btn-sm">Update</button></a></td>
+			</tr>
+			{% endfor %}
+		</table>
+		</div>
+
+	{% else %}
+		<p>There are no customers. </p>
+	{% endif %}
+{% endblock %}

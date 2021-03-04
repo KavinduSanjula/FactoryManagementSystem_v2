@@ -1,0 +1,30 @@
+{% extends 'inventory_manager/product.html' %}
+
+{% block contentblock %}
+	<h1>Issuing Note</h1>
+	
+	<br>
+	{% if recodes %}
+		<div class="table-div">
+			<table class="view-table">
+	    	<tr>
+	    		<th>ID</th>
+	    		<th>Product</th>
+	    		<th>Batch Number</th>
+	    		<th>Quantity</th>
+	    	</tr>
+	    	{% for recode in recodes %}
+	    	    <tr>
+	    	    	<td>{{ recode.id }}</td>
+	    	    	<td>{{ recode.product }}</td>
+	    	    	<td>{{ recode.batch_num }}</td>
+	    	    	<td>{{ recode.qty }}</td>
+	    	    	
+	    	    </tr>
+	    	{% endfor %}
+	    </table>
+		</div>
+	{% else %}
+		<p>There are no recodes.</p>
+	{% endif %}
+{% endblock %}

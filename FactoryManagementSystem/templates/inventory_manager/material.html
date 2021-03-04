@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+
+{% block headblock %}
+{% endblock %}
+
+
+{% block bodyblock %}
+	<br>
+		<div class="table-div">
+			<table class="borderless">
+			<tr>
+				<td><a href="{% url 'supplires-view' %}"><button class="btn">Suppliers</button></a></td>
+				<td><a href="{% url 'receives-view' %}"><button class="btn">Receives</button></a></td>
+				<td><a href="{% url 'materials-view' %}"><button class="btn">Materials</button></a></td>
+				<td><a href="{% url 'material-stock-view' %}"><button class="btn">Stocks</button></a></td>
+				<td><a href="{% url 'buydispatch' %}"><button class="btn">Dispatchs</button></a></td>
+				<td><a href="{% url 'issue-material-view' %}"><button class="btn">Issuings</button></a></td>
+			</tr>
+			<tr>
+				<td><a href="{% url 'add-supplire' %}"><button class="btn">Add Supplier</button></a></td>
+				<td><a href="{% url 'add-receive' %}"><button class="btn">Add Receive</button></a></td>
+				<td><a href="{% url 'add-material' %}"><button class="btn">Add Material</button></a></td>
+				<!-- <td><a href="{% url 'add-material-stock' %}"><button class="btn">Add Stock</button></a></td> -->
+				<td><a href="{% url 'add-buydispatch' %}"><button class="btn">Add Dispatch</button></a></td>
+				<td><a href="{% url 'issue-material' %}"><button class="btn">Issue Material</button></a></td>
+			</tr>
+		</table>
+		</div>
+		<br>
+		<hr>
+		{% block contentblock %}
+		{% endblock %}
+	
+{% endblock %}

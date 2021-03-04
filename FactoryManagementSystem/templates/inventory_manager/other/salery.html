@@ -1,0 +1,78 @@
+{% extends 'inventory_manager/other.html' %}
+
+{% block contentblock %}
+	<h1>Salery</h1>
+	<hr>
+	<div class="search-form">
+		<form action="" method="POST">
+			{% csrf_token %}
+			<label for="emp_name">Emp Name:</label><input type="text" name="emp_name"> &nbsp;
+			<label for="emp_code">Emp Code:</label><input type="text" name="emp_code"> &nbsp;
+			<label for="start-date">Start Date:</label><input type="date" name="start_date"> &nbsp;
+			<label for="end-date">End Date:</label><input type="date" name="end_date"> &nbsp;
+			<input type="submit" value="Search" class="btn btn-sm"> 
+		</form>
+	</div>	
+	<hr>
+	{% if recodes %}
+		<div class="table-div" style="font-size: 12px">
+			<table class="view-table">
+				<tr>
+					<th>Employee</th>
+					<th>Date</th>
+					<th>Worked Days</th>
+					<th>Rate</th>
+					<th>Other Payments</th>
+					<th>Leave Deductions</th>
+					<th>Otherde Deductions</th>
+					<th>Salery</th>
+					<th>Payment Method</th>
+					<th>Ref-Number</th>
+					<th>Effective Date</th>
+					<th>Remarks</th>
+					<th colspan="2">Action</th>
+				</tr>
+				{% for recode in recodes %}
+					<tr class="paid-{{ recode.paid }}">
+						<td>{{ recode.employee }}</td>
+						<td>{{ recode.date }}</td>
+						<td>{{ recode.worked_days }}</td>
+						<td class="amount">{{ recode.rate }}</td>
+						<td class="amount">{{ recode.other_payments }}</td>
+						<td class="amount">{{ recode.leave_ddt }}</td>
+						<td class="amount">{{ recode.other_ddt }}</td>
+						<td class="amount">{{ recode.amount }}</td>
+						<td>{{ recode.payment_method }}</td>
+						<td>{{ recode.ref_num }}</td>
+						<td>{{ recode.eff_date }}</td>
+						<td>{{ recode.remarks }}</td>
+						<td><a href="{% url 'update-salery' recode.id %}"><button class="btn btn-sm" style="width: 50px;">Edit</button></a></td>
+						<td>
+							<form action="{% url 'delete-salery' recode.id %}" method="POST">
+								{% csrf_token %}
+								<input type="submit" value="Del" class="btn btn-sm" style="width: 50px;">
+							</form>
+						</td>
+					</tr>
+				{% endfor %}
+				<tr>
+					<th colspan="7">Total</th>
+					<td class="amount">{{ total }}</td>
+				</tr>
+			</table>
+		</div>
+	{% else %}
+		<p>There are no recodes.</p>
+	{% endif %}
+{% endblock %}
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,39 @@
+{% extends 'inventory_manager/material.html' %}
+
+{% block contentblock %}
+	<h1>Dispatch Notes</h1>
+	<hr>
+		<form action="" method="POST">
+			{% csrf_token %}
+			<input class="searchfield" type="text" name="dispatch_note_num"> 
+			<input type="submit" value="Search" class="btn">
+		</form>
+	<hr>
+	<br>
+	{% if recodes %}
+		<div class="table-div">
+			<table class="view-table">
+	    	<tr>
+	    		<th>Material</th>
+	    		<th>Unit Price</th>
+	    		<th>Batch Number</th>
+	    		<th>Quantity</th>
+	    		<th>Value</th>
+	    		<!-- <th>Action</th> -->
+	    	</tr>
+	    	{% for recode in recodes %}
+	    	    <tr>
+	    	    	<td>{{ recode.material }}</td>
+	    	    	<td class="amount">{{ recode.unit_price }}</td>
+	    	    	<td>{{ recode.batch_num }}</td>
+	    	    	<td>{{ recode.qty }}</td>
+	    	    	<td class="amount">{{ recode.amount }}</td>
+	    	    	<!-- <td><a href="{% url 'delete-selldispatch' recode.id %}"><button class="btn">Delete</button></a></td> -->
+	    	    </tr>
+	    	{% endfor %}
+	    </table>
+		</div>
+	{% else %}
+		<p>There are no recodes.</p>
+	{% endif %}
+{% endblock %}

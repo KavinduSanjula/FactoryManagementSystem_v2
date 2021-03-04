@@ -1,0 +1,31 @@
+{% extends 'finance_manager/bank/bank.html' %}
+
+{% block bodycontent %}
+<br>
+	<h1>Checks</h1>
+	{% if recodes %}
+		<div class="table-div">
+			<table class="view-table">
+			<tr>
+				<th>Ref-Number</th>
+				<th>Added Date</th>
+				<th>Effective Date</th>
+				<th class="amount">Value</th>
+				<th>Check Type</th>
+			</tr>
+			{% for recode in recodes %}
+				<tr>
+					<td>{{ recode.ref_num }}</td>
+					<td>{{ recode.date }}</td>
+					<td>{{ recode.eff_date }}</td>
+					<td>{{ recode.amount }}</td>
+					<td>{{ recode.check_type }}</td>
+				</tr>
+			{% endfor %}
+		</table>
+		</div>
+	{% else %}
+		<p>There are no recodes</p>
+	{% endif %}
+	
+{% endblock %}

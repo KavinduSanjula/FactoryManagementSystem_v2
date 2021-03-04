@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+{% block headblock %}
+<title> Finance </title>
+{% endblock %}
+
+
+{% block bodyblock %}
+		<br>
+		<div class="table-div">
+			<table class="borderless">
+			<tr>
+				<td><a href="{% url 'profit' %}"><button class="btn">Profit</button></a></td>
+				<td><a href="{% url 'bank' %}"><button class="btn">Bank</button></a></td>
+				<td><a href="{% url 'cashflow' %}"><button class="btn">Cahflow</button></a></td>
+				<td><a href="{% url 'pettycash' %}"><button class="btn">Petty Cash</button></a></td>
+				<td><a href="{% url 'projectioncashflow' %}"><button class="btn" style="padding: 5px 0;">Projection Cashflow</button></a></td>
+			</tr>
+		</table>
+		</div>
+		<br>
+		<hr>
+		{% block contentblock %}
+		{% endblock %}
+	
+{% endblock %}

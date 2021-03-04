@@ -1,0 +1,30 @@
+{% extends 'inventory_manager/product.html' %}
+
+{% block contentblock %}
+	<h1>Products</h1>
+	{% if products %}
+
+		<div class="table-div">
+			<table class="view-table">
+			<tr>
+				<th>Product ID</th>
+				<th>Name</th>
+				<th>Stock</th>
+				<th>Action</th>
+			</tr>
+			{% for element in products %}
+			<tr>
+				<td>{{ element.product.id }}</td>
+				<td>{{ element.product.name }}</td>
+				<td>{{ element.qty }}</td>
+				<td><a href="{% url 'update-product' element.product.id %}"><button class="btn btn-sm">Edit</button></a></td>
+
+			</tr>
+			{% endfor %}
+		</table>
+		</div>
+
+	{% else %}
+		<p>There are no products. </p>
+	{% endif %}
+{% endblock %}

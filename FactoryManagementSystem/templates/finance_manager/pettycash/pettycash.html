@@ -1,0 +1,28 @@
+{% extends 'finance_manager/finance.html' %}
+
+{% block contentblock %}
+	<h1>Petty Cash</h1>
+
+	<hr>
+
+	<div class="table-div">
+		<table class="borderless">
+			<tr>
+				<td><a href="{% url 'pettycash-add-expense' %}"><button class="btn">Add Expense</button></a></td>
+				<td><a href="{% url 'pettycash-issue' %}"><button class="btn">Issue</button></a></td>
+				<td><a href="{% url 'pettycash-expenses' %}"><button class="btn">Expenses</button></a></td>
+				<td><a href="{% url 'pettycash-issuings' %}"><button class="btn">Issuings</button></a></td>
+			</tr>
+		</table>
+	</div>
+
+	<hr>
+
+	{% block bodycontent %}
+		<div class="container-box">
+		<h2>Total Petty Cash Amount:</h2>
+		<h1>Rs. {{ total_cash }}</h1>
+		</div>
+	{% endblock %}
+	
+{% endblock %}
