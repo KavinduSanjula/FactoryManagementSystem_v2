@@ -173,11 +173,18 @@ class ProductIssue(models.Model):
 
 #material section models
 
-class Material(models.Model):
+class MaterialCategory(models.Model):
 	name = models.CharField(max_length=100)
 
 	def __str__(self):
 		return self.name
+
+class Material(models.Model):
+	name = models.CharField(max_length=100)
+	category = models.ForeignKey(MaterialCategory, null=True, on_delete=models.SET_NULL)
+
+	def __str__(self):
+		return f'{self.name} | {self.category}' 
 
 class MaterialStock(models.Model):
 	material = models.ForeignKey(Material, null=True, on_delete=models.SET_NULL)
@@ -186,7 +193,7 @@ class MaterialStock(models.Model):
 	qty = models.IntegerField()
 
 	def __str__(self):
-		return f'{self.material.name} | {self.batch_num} | {self.unit_price}'
+		return f'{self.material} | {self.batch_num} | {self.unit_price}'
 
 class MaterialIssue(models.Model):
 	stock = models.ForeignKey(MaterialStock, null=True, on_delete=models.SET_NULL)
@@ -197,7 +204,7 @@ class MaterialIssue(models.Model):
 	remarks = models.CharField(max_length=500,null=True,blank=True)
 
 	def __str__(self):
-		return f'{self.stock.material.name} | {self.production_batch_number} | {self.qty}'
+		return f'{self.stock} | {self.production_batch_number} | {self.qty}'
 
 class Supplire(models.Model):
 	name = models.CharField(max_length=100)

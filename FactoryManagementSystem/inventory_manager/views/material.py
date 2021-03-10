@@ -73,14 +73,30 @@ def receives_view(request):
 #MATERIAL VIEW
 @login_required(login_url='/login')
 def materials_view(request):
-	materials = Material.objects.all()
-	context = {'materials':materials}
+	materials = None
+	if request.method == 'POST':
+		category = request.POST['category']
+		if category == 'all':
+			materials = Material.objects.all()
+		else:
+			materials = Material.objects.filter(category__name=category)
+	else:
+		materials = Material.objects.all()
+	context = {'materials':materials.order_by('-id')}
 	return render(request, 'inventory_manager/material/material.html', context)
 
 #STOCK VIEW
 @login_required(login_url='/login')
 def stock_view(request):
-	stocks = MaterialStock.objects.all()
+	stocks = None
+	if request.method == 'POST':
+		category = request.POST['category']
+		if category == 'all':
+			stocks = MaterialStock.objects.all().order_by('-id')
+		else:
+			stocks = MaterialStock.objects.filter(material__category__name=category)
+	else:
+		stocks = MaterialStock.objects.all().order_by('-id')
 	context = {'stocks':stocks}
 	return render(request, 'inventory_manager/material/stock.html', context)
 

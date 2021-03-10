@@ -1,6 +1,6 @@
 from django.contrib import admin
 from .models import (Customer, Sell, OtherSell, SellUpdate, SellPayment, SellDispatch, Product, ProductIssue, ProductIssueNote, ProductStock,
-					 Material, MaterialIssue, MaterialStock, Supplire, Buy, BuyPayment, BuyDispatch, BuyUpdate,
+					 Material, MaterialCategory, MaterialIssue, MaterialStock, Supplire, Buy, BuyPayment, BuyDispatch, BuyUpdate,
 					 OtherIncome, Expense, Employee, Salery)
 # Register your models here.
 
@@ -18,6 +18,7 @@ admin.site.register(Employee)
 admin.site.register(Salery)
 
 admin.site.register(Material)
+admin.site.register(MaterialCategory)
 admin.site.register(MaterialIssue)
 admin.site.register(MaterialStock)
 admin.site.register(Supplire)

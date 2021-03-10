@@ -1,6 +1,20 @@
 {% extends 'inventory_manager/material.html' %}
 
 {% block contentblock %}
+
+	<div class="search-form">
+		<form action="" method="POST">
+			{% csrf_token %}
+			<select name="category">
+				<option value="all">Category(all)</option>
+				<option value="raw">Raw</option>
+				<option value="packing">Packing</option>
+			</select>
+			<input type="submit" value="Search" class="btn btn-sm"> 
+		</form>
+	</div>	
+	<hr>
+
 	<h1>Stock</h1>
 	{% if stocks %}
 

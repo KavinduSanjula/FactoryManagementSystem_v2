@@ -1,6 +1,19 @@
 {% extends 'inventory_manager/material.html' %}
 
 {% block contentblock %}
+	<div class="search-form">
+		<form action="" method="POST">
+			{% csrf_token %}
+			<select name="category">
+				<option value="all">Category(all)</option>
+				<option value="raw">Raw</option>
+				<option value="packing">Packing</option>
+			</select>
+			<input type="submit" value="Search" class="btn btn-sm"> 
+		</form>
+	</div>	
+	<hr>
+
 	<h1>Material</h1>
 	{% if materials %}
 
@@ -9,12 +22,14 @@
 			<tr>
 				<th>Product ID</th>
 				<th>Name</th>
+				<th>Category</th>
 				<th>Action</th>
 			</tr>
 			{% for material in materials %}
 			<tr>
 				<td>{{ material.id }}</td>
 				<td>{{ material.name }}</td>
+				<td>{{ material.category }}</td>
 				<td><a href="{% url 'update-material' material.id %}"><button class="btn btn-sm">Edit</button></a></td>
 
 			</tr>

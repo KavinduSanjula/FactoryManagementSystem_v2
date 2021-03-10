@@ -111,7 +111,7 @@ class AddSupplireForm(forms.ModelForm):
 class AddMaterialForm(forms.ModelForm):
 	class Meta:
 		model = Material
-		fields = ('name',)
+		fields = ('name','category')
 		widgets = {'name':forms.TextInput(attrs={'class':'input-text'})}
 
 class AddMaterialStockForm(forms.ModelForm):
